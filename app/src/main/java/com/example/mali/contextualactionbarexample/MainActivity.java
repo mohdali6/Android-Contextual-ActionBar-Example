@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.list_item,
                 R.id.textView,
                 data);
+        mAdapter.setCheckedItems(selectedItemsPosition);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(mAdapter);
@@ -73,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 if (checked) {
                     selectionCount++;
                     selectedItemsPosition.add(position);
+                    mAdapter.setCheckedItems(selectedItemsPosition);
+                    mAdapter.notifyDataSetChanged();
                 } else {
                     selectionCount--;
                     selectedItemsPosition.remove(position);
+                    mAdapter.notifyDataSetChanged();
                 }
 
                 if (selectionCount != 0) {
